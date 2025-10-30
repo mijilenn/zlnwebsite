@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Blog Slide - Profil</title>
+  <style>
+    :root{--bg:#0f1724;--card:#0b1220;--text:#e6eef8}
+    html,body{height:100%;margin:0;font-family:Inter,ui-sans-serif,system-ui,Segoe UI,Roboto,"Helvetica Neue",Arial}
+    body{background:linear-gradient(180deg,#071022 0%, #071727 100%);color:var(--text);}
+    .viewport{height:100vh;overflow-y:scroll;scroll-snap-type:y mandatory}
+    .slide{height:100vh;display:flex;align-items:center;justify-content:center;padding:40px;box-sizing:border-box;scroll-snap-align:start;opacity:0;transform:translateY(30px);transition:opacity .45s ease,transform .45s ease}
+    .slide.visible{opacity:1;transform:none}
+    .card{width:100%;max-width:920px;background:rgba(255,255,255,0.02);padding:28px;border-radius:16px;box-shadow:0 8px 24px rgba(2,6,23,0.6);display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:center}
+    .center{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+    h1,h2{margin:0 0 12px 0}
+    p{margin:0;color:rgba(230,238,248,0.9)}
+
+    .cover-wrap{width:220px;height:220px;display:flex;align-items:center;justify-content:center;margin:0 auto}
+    .cover{width:100%;height:100%;object-fit:cover;border-radius:8px;background:linear-gradient(135deg,#081226,#16324f);display:block}
+
+    .carousel{display:flex;align-items:center;gap:16px}
+    .thumb{width:160px;height:160px;display:flex;align-items:center;justify-content:center}
+    .thumb img{width:100%;height:100%;object-fit:cover;border-radius:8px}
+    .meta{flex:1}
+    .nav-btn{background:rgba(255,255,255,0.06);border:0;padding:12px;border-radius:10px;color:var(--text);cursor:pointer}
+
+    .controls{display:flex;gap:12px;align-items:center}
+    .play-btn{background:rgba(255,255,255,0.08);border:0;padding:10px 12px;border-radius:10px;cursor:pointer}
+
+    @media(max-width:720px){
+      .card{grid-template-columns:1fr;gap:18px;padding:18px}
+      .cover-wrap{width:180px;height:180px}
+      .thumb{width:140px;height:140px}
+    }
+
+    .socials{display:flex;flex-direction:column;gap:12px}
+    .socials a{display:inline-block;padding:10px 14px;border-radius:10px;background:rgba(255,255,255,0.03);text-decoration:none;color:var(--text)}
+  </style>
+</head>
+<body>
+  <div class="viewport" id="viewport">
+    <section class="slide" id="slide-1" data-loaded="0">
+      <div class="card">
+        <div class="center">
+          <div class="cover-wrap">
+            <img class="cover" data-src="" alt="Cover Profil" />
+          </div>
+          <h1 id="name">Nama Kamu</h1>
+          <p id="bio">Just a student who like to Learn Coding, Playing Games, Listen to Music.</p>
+        </div>
+        <div>
+          <h2>About Me?</h2>
+          <p>From Indonesia, Like to learn new things; like foreign languages, coding, etc.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" id="slide-2" data-loaded="0">
+      <div class="card">
+        <div class="center">
+          <h2>Favourite Songs</h2>
+          <div class="cover-wrap">
+            <img id="song-cover" class="cover" data-src="" alt="Cover Lagu" />
+          </div>
+          <div style="margin-top:14px;" id="song-title">Pilih lagu</div>
+        </div>
+
+        <div>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
+            <div class="controls">
+              <button class="nav-btn" id="song-prev">◀</button>
+              <button class="nav-btn" id="song-next">▶</button>
+            </div>
+            <div>
+              <button class="play-btn" id="song-play">Play</button>
+              <button class="play-btn" id="song-pause">Pause</button>
+            </div>
+          </div>
+
+
+          <div style="margin-top:10px">
+            <audio id="audio-player" controls preload="none"></audio>
+          </div>
+
+          <div style="margin-top:12px;color:rgba(230,238,248,0.7);font-size:13px">
+            Catatan: audio tidak akan autoplay saat slide belum disentuh karena kebijakan browser.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" id="slide-3" data-loaded="0">
+      <div class="card">
+        <div class="center">
+          <h2>Oshi</h2>
+          <div class="cover-wrap">
+            <img id="idol-cover" class="cover" data-src="" alt="Cover Idola" />
+          </div>
+          <div style="margin-top:12px" id="idol-name">Nama Oshi</div>
+        </div>
+
+        <div>
+          <div style="display:flex;align-items:center;gap:14px;margin-top:14px">
+            <button class="nav-btn" id="idol-prev">◀</button>
+            <button class="nav-btn" id="idol-next">▶</button>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" id="slide-4" data-loaded="0">
+      <div class="card">
+        <div class="center">
+          <h2>Thank You!</h2>
+          <div class="cover-wrap">
+            <img class="cover" data-src="" alt="Cover Promo" />
+          </div>
+          <p>The End.</p>
+        </div>
+        <div>
+          <h2>My Social Media</h2>
+          <div class="socials">
+            <a id="ig-link" href="" target="_blank">Instagram : @zzlnsptr</a>
+            <a id="tt-link" href="" target="_blank">X : @jibigell</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const songs = [
+      {title: 'Dear God', artist: 'Avenged Sevenfold', cover: 'DearGod (1).jpg', src: 'DearGod.mp3'},
+      {title: 'Let Down', artist: 'Radiohead', cover: 'LetDown1.jpg', src: 'Let Down.mp3'},
+      {title: 'Somebody`s Pleasure', artist: 'Aziz Hedra', cover: 'Somebodypleasure.jpg', src: 'Somebodys Pleasure.mp3'},
+      {title: 'Bat Country', artist: 'Avenged Sevenfold', cover: 'cityOfEvil.jpg', src: 'Bat Country - Live.mp3'},
+      {title: 'Despacito', artist: 'Luis Fonsi', cover: 'Despacito.jpg', src: 'Despacito.mp3'}
+    ];
+
+    const idols = [
+      {name: 'Abigail Rachel Lie', cover: 'Aralie2.jpg', },
+      {name: 'Letycia Moreen', cover: 'moreen2.jpg'},
+      {name: 'Jazzlyn Trisha', cover: 'Trisha2.jpg'},
+      {name: 'Aurhel Alana', cover: 'Lana1.jpg'},
+      {name: 'Catherina Vallencia', cover: 'erine1.jpg'}
+    ];
+
+    let songIndex = 0;
+    let idolIndex = 0;
+    const audio = document.getElementById('audio-player');
+
+    document.getElementById('name').innerText = 'Zhillan Henri Syahputra';
+    document.getElementById('bio').innerText = 'Just a student who like to Learn Coding, Playing Games, Listen to Music.';
+
+    const slides = document.querySelectorAll('.slide');
+    const observer = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        const el = entry.target;
+        if(entry.isIntersecting){
+          el.classList.add('visible');
+          if(el.dataset.loaded === '0'){
+            loadSlide(el.id);
+            el.dataset.loaded = '1';
+          }
+        } else {
+          el.classList.remove('visible');
+          if(el.id === 'slide-2') audio.pause();
+        }
+      });
+    }, {threshold: 0.6});
+    slides.forEach(s=>observer.observe(s));
+
+    function loadSlide(id){
+      if(id === 'slide-1'){
+        const img = document.querySelector('#slide-1 .cover').src = 'Trsha.jpg'
+        if(img && img.dataset.src){
+          img.src = img.dataset.src || '';
+        }
+      }
+
+      if(id === 'slide-2'){
+        
+        renderSong();
+      }
+
+      if(id === 'slide-3'){
+        renderIdol();
+      }
+
+      if(id === 'slide-4'){
+
+        const promo = document.querySelector('#slide-4 .cover').src ='AkuPergi.jpg'
+        if(promo && promo.dataset.src) promo.src = promo.dataset.src || '';
+      }
+    }
+
+    const songCover = document.getElementById('song-cover');
+    const songTitle = document.getElementById('song-title');
+    document.getElementById('song-next').addEventListener('click', ()=>{ songIndex = (songIndex + 1) % songs.length; renderSong(); });
+    document.getElementById('song-prev').addEventListener('click', ()=>{ songIndex = (songIndex - 1 + songs.length) % songs.length; renderSong(); });
+    document.getElementById('song-play').addEventListener('click', ()=>{ if(audio.src) audio.play().catch(()=>{}); });
+    document.getElementById('song-pause').addEventListener('click', ()=>{ audio.pause(); });
+
+    function renderSong(){
+      const s = songs[songIndex];
+      songCover.dataset.src = s.cover || '';
+
+      if(document.getElementById('slide-2').classList.contains('visible')) songCover.src = s.cover || '';
+      songTitle.innerText = s.title + ' — ' + s.artist;
+
+      audio.pause();
+      if(s.src){
+        audio.src = s.src;
+        audio.load();
+      } else {
+        audio.removeAttribute('src');
+      }
+    }
+
+    const idolCover = document.getElementById('idol-cover');
+    const idolName = document.getElementById('idol-name');
+    document.getElementById('idol-next').addEventListener('click', ()=>{ idolIndex = (idolIndex + 1) % idols.length; renderIdol(); });
+    document.getElementById('idol-prev').addEventListener('click', ()=>{ idolIndex = (idolIndex - 1 + idols.length) % idols.length; renderIdol(); });
+
+    function renderIdol(){
+      const id = idols[idolIndex];
+      idolCover.dataset.src = id.cover || '';
+      if(document.getElementById('slide-3').classList.contains('visible')) idolCover.src = id.cover || '';
+      idolName.innerText = id.name || 'Nama Idola';
+    }
+
+    
+    document.getElementById('viewport').addEventListener('scroll', ()=>{
+
+    }, {passive:true});
+
+
+    window.addEventListener('keydown', (e)=>{
+      if(document.getElementById('slide-2').classList.contains('visible')){
+        if(e.key === 'ArrowLeft') document.getElementById('song-prev').click();
+        if(e.key === 'ArrowRight') document.getElementById('song-next').click();
+      }
+      if(document.getElementById('slide-3').classList.contains('visible')){
+        if(e.key === 'ArrowLeft') document.getElementById('idol-prev').click();
+        if(e.key === 'ArrowRight') document.getElementById('idol-next').click();
+      }
+    });
+
+    
+    document.getElementById('ig-link').href = 'https://www.instagram.com/zzlnsptr?igsh=MWY1N2wyY21uYXc0';
+    document.getElementById('tt-link').href = 'https://x.com/jibigell?t=FPI0udYgsiJPzY8EVsJA2g&s=09';
+
+    (function addTouchSwipe(){
+      const area = document.getElementById('slide-2');
+      if(!area) return;
+      let startX = 0;
+      area.addEventListener('touchstart', (ev)=> startX = ev.touches[0].clientX );
+      area.addEventListener('touchend', (ev)=>{
+        const endX = ev.changedTouches[0].clientX;
+        const diff = endX - startX;
+        if(Math.abs(diff) < 40) return;
+        if(diff > 0) document.getElementById('song-prev').click(); else document.getElementById('song-next').click();
+      });
+    })();
+
+  </script>
+</body>
+</html>
